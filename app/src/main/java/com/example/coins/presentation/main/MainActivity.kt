@@ -1,4 +1,4 @@
-package com.example.coins
+package com.example.coins.presentation.main
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.TextView
 import com.example.coins.databinding.ActivityMainBinding
+import com.example.coins.presentation.details.CurrencyDetailActivity
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -50,6 +51,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun setUpAction() {
         binding.btAceptar.setOnClickListener {
+            //val intent = Intent(this, CurrencyDetailActivity::class.java)
+            //intent.putExtra("currency", binding.spinnerCoins.selectedItem)
             startActivity(Intent(this, CurrencyDetailActivity::class.java))
         }
     }

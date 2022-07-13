@@ -1,8 +1,8 @@
 package com.example.coins.data.remote.service.response
 
 import com.example.coins.data.remote.model.CurrencyDto
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
-@JsonClass(generateAdapter = true)
-data class GetCurrencyDto(@Json (name = "data") val data:List<CurrencyDto>?)
+@Serializable
+data class GetCurrencyDto(@SerialName("data") val data:List<CurrencyDto>?)

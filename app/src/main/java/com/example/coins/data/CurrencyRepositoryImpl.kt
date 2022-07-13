@@ -9,18 +9,18 @@ import com.example.coins.domain.exception.JsonDeserializationException
 import java.net.UnknownHostException
 import com.example.coins.domain.exception.NetworkConnectionException
 import com.example.coins.domain.exception.ServerException
-import com.squareup.moshi.JsonDataException
+import kotlinx.serialization.SerializationException
 import retrofit2.HttpException
 
 class CurrencyRepositoryImpl(private val service: CurrencyService):CurrencyRepository {
     override suspend fun getCurrencyDetails(currency: String): List<Currency>? = try {
         retrofitCall {
-            service.getCurrency(currency)
+            service.getCurrency(currency, true)
         }  .body()?.data?.map { it.toEntity() }
     } catch (exception:Exception){
         val failure = when(exception){
             is UnknownHostException -> NetworkConnectionException(exception.message)
-            is JsonDataException -> JsonDeserializationException(exception.message)
+            is SerializationException -> JsonDeserializationException(exception.message)
             is HttpException -> ServerException(exception.errorMessage())
             else -> exception
         }
