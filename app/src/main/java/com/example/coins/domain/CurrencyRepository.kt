@@ -1,9 +1,9 @@
 package com.example.coins.domain
 
-import com.example.coins.domain.entity.Country
+import com.example.coins.domain.entity.Currency
 
 interface CurrencyRepository {
-    suspend fun getCurrencyDetails(currency:String): List<Country>
+    suspend fun getCurrencyDetails(currency:String): List<Currency>?
 
 
 }
